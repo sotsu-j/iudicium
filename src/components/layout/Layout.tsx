@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
 import AccountButton from '../Auth/AccountButton'
-import AppMenu from '../AppMenu'
+import AppMenuButton from '../AppMenu/AppMenuButton'
 
 interface Props {
     title?: string;
@@ -18,8 +18,15 @@ const Wrapper = styled.div`
     height: 100vh;
 `
 
-const StyledAccountButton = styled(AccountButton)`
+const Actions = styled.div`
+    ${({ theme }) => `
+    display: flex;
+    align-items: center;
     margin-left: auto;
+    & > :nth-child(n+2) {
+        margin-left: ${theme.spacing(2)}px;
+    }
+    `}
 `
 
 const Main = styled.main`
@@ -39,12 +46,14 @@ const Layout: FC<Props> = ({ title, children }) => {
 
             <AppBar position="sticky" >
                 <Toolbar variant="dense">
-                    <StyledAccountButton />
+                    <Actions>
+                        <AppMenuButton />
+                        <AccountButton />
+                    </Actions>
                 </Toolbar>
             </AppBar>
             <Main>
                 {children}
-                <AppMenu />
             </Main>
         </Wrapper>
     )

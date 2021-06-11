@@ -13,6 +13,7 @@
         [id]: {
             name: str
             private: bool
+            last_update: int
             members: {
                 [id]: {
                     name
