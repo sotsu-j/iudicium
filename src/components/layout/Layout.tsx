@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
 import AccountButton from '../Auth/AccountButton'
+import AppMenu from '../AppMenu'
 
 interface Props {
     title?: string;
@@ -43,6 +44,7 @@ const Layout: FC<Props> = ({ title, children }) => {
             </AppBar>
             <Main>
                 {children}
+                <AppMenu />
             </Main>
         </Wrapper>
     )
