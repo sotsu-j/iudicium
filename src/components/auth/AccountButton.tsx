@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Avatar from '@material-ui/core/Avatar'
 import Popper from '@material-ui/core/Popper'
 import Paper from '@material-ui/core/Paper'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 import { AuthContext } from './Auth'
 import SignIn from './SignIn'
@@ -40,7 +41,7 @@ const AccountButton: FC<Props> = ({ className }) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
     }
 
-    useEffect(()=> setAnchorEl(null), [currentUser])
+    useEffect(() => setAnchorEl(null), [currentUser])
 
     return (
         <div className={className}>
@@ -55,11 +56,13 @@ const AccountButton: FC<Props> = ({ className }) => {
                 )
             }
             <Popper open={Boolean(anchorEl)} anchorEl={anchorEl}>
-                <StyledPaper>
-                    <AccountMenu />
-                </StyledPaper>
+                <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
+                    <StyledPaper>
+                        <AccountMenu />
+                    </StyledPaper>
+                </ClickAwayListener>
             </Popper>
-        </div>
+        </div >
     )
 }
 

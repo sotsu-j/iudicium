@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
+import styled from 'styled-components'
 
 import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
 import { ThemeProvider as MaterialUIThemeProvider } from '@material-ui/core/styles'
@@ -8,6 +9,12 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../../styles/theme'
 
 import { AuthProvider } from '../components/auth/Auth'
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+`
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   useEffect(() => {
@@ -22,8 +29,10 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
       <AuthProvider>
         <MaterialUIThemeProvider theme={theme}>
           <StyledComponentsThemeProvider theme={theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
+            <Wrapper>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </Wrapper>
           </StyledComponentsThemeProvider>
         </MaterialUIThemeProvider>
       </AuthProvider>
