@@ -10,7 +10,7 @@ interface channnel {
 }
 
 const SelectChannel = () => {
-    const [channels, setChannels] = useState < channnel[] > ([])
+    const [channels, setChannels] = useState<channnel[]>([])
     const database = firebase.database()
 
     useEffect(() => {

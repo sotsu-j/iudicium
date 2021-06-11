@@ -1,11 +1,13 @@
 import Layout from '../components/Layout'
-import Chat from '../components/Chat'
+import Chat, { ChatProvider } from '../components/Chat'
 
 export default function Home() {
 
   return (
     <Layout title="Chat">
-      <Chat />
+      <ChatProvider>
+        <Chat />
+      </ChatProvider>
     </Layout>
   )
 }
