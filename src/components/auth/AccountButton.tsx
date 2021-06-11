@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useContext } from 'react'
+import { FC, useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import IconButton from '@material-ui/core/IconButton'
@@ -7,7 +7,7 @@ import Popper from '@material-ui/core/Popper'
 import Paper from '@material-ui/core/Paper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
-import { AuthContext } from './Auth'
+import useAuth from './Auth'
 import SignIn from './SignIn'
 import AccountMenu from './AccountMenu'
 
@@ -34,7 +34,7 @@ const StyledPaper = styled(Paper)`
 `
 
 const AccountButton: FC<Props> = ({ className }) => {
-    const { currentUser } = useContext(AuthContext)
+    const [currentUser] = useAuth()
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {

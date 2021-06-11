@@ -1,12 +1,11 @@
-import Typography from '@material-ui/core/Typography'
-
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
+import Chat from '../components/Chat'
 
 export default function Home() {
 
   return (
     <Layout title="Chat">
-      <Typography variant="h1" align="center">IUDICIUM</Typography>
+      <Chat />
     </Layout>
   )
 }

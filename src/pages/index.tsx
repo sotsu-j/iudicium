@@ -1,12 +1,23 @@
+import styled from 'styled-components'
+
 import Typography from '@material-ui/core/Typography'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
+
+const Main = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+`
 
 export default function Home() {
-
   return (
     <Layout>
-      <Typography variant="h1" align="center">IUDICIUM</Typography>
+      <Main>
+        <Typography variant="h1" align="center">IUDICIUM</Typography>
+      </Main>
     </Layout>
   )
 }

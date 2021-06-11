@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
-import AccountButton from '../auth/AccountButton'
+import AccountButton from '../Auth/AccountButton'
 
 interface Props {
     title?: string;
@@ -23,8 +23,6 @@ const StyledAccountButton = styled(AccountButton)`
 
 const Main = styled.main`
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 100%;
 `

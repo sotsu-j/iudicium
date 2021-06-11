@@ -18,11 +18,19 @@
                     name
                 }
             }
-            messages: {
-                [id] {
-                    message: str
-                    user: str
-                    timestamp: int
+        }
+    }
+    messages: {
+        [channel_id] {
+            [id]: {
+                message: str
+                user: str
+                timestamp: int
+                reactions: {
+                    [user_id]: {
+                        name: str
+                        reaction: str
+                    }
                 }
             }
         }

@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
 import Typography from '@material-ui/core/Typography'
@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 
 import firebase from '../../Firebase'
-import { AuthContext } from './Auth'
+import useAuth from './Auth'
 
 interface Props {
     className?: string;
@@ -21,7 +21,7 @@ const StyledAvatar = styled(Avatar)`
 `
 
 const AccountMenu: FC<Props> = ({ className }) => {
-    const { currentUser } = useContext(AuthContext)
+    const [currentUser] = useAuth()
 
     const logout = () => {
         firebase.auth().signOut()

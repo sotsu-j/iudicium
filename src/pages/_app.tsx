@@ -7,7 +7,7 @@ import { StylesProvider } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../../styles/theme'
 
-import { AuthProvider } from '../components/auth/Auth'
+import { AuthProvider } from '../components/Auth'
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   useEffect(() => {

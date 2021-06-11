@@ -1,7 +1,7 @@
-import Firebase from 'firebase';
-import { FC, createContext, useEffect, useState } from 'react';
+import Firebase from 'firebase'
+import { FC, createContext, useContext, useEffect, useState } from 'react'
 
-import firebase from '../../Firebase';
+import firebase from '../../Firebase'
 
 type AuthContextProps = {
   currentUser: Firebase.User | null | undefined
@@ -27,4 +27,11 @@ const AuthProvider: FC = ({ children }) => {
   )
 }
 
+const useAuth = () => {
+    const { currentUser } = useContext(AuthContext)
+
+    return [currentUser]
+}
+
+export default useAuth
 export { AuthContext, AuthProvider }
