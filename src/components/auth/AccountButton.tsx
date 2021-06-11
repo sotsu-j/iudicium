@@ -1,9 +1,10 @@
-import { FC, useState, useContext } from 'react'
+import { FC, useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 
 import IconButton from '@material-ui/core/IconButton'
 import Avatar from '@material-ui/core/Avatar'
 import Popper from '@material-ui/core/Popper'
+import Paper from '@material-ui/core/Paper'
 
 import { AuthContext } from './Auth'
 import SignIn from './SignIn'
@@ -20,6 +21,17 @@ const StyledAvatar = styled(Avatar)`
     `}
 `
 
+const StyledPaper = styled(Paper)`
+    ${({ theme }) => `
+    display: flex;
+    justify-content: center;
+    min-width: ${theme.spacing(36)}px;
+    margin: ${theme.spacing(2)}px;
+    padding: ${theme.spacing(2)}px;
+    border-radius: 1em;
+    `}
+`
+
 const AccountButton: FC<Props> = ({ className }) => {
     const { currentUser } = useContext(AuthContext)
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -27,6 +39,8 @@ const AccountButton: FC<Props> = ({ className }) => {
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
     }
+
+    useEffect(()=> setAnchorEl(null), [currentUser])
 
     return (
         <div className={className}>
@@ -41,7 +55,9 @@ const AccountButton: FC<Props> = ({ className }) => {
                 )
             }
             <Popper open={Boolean(anchorEl)} anchorEl={anchorEl}>
-                <AccountMenu />
+                <StyledPaper>
+                    <AccountMenu />
+                </StyledPaper>
             </Popper>
         </div>
     )

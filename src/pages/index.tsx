@@ -24,7 +24,7 @@ export default function Home() {
           <StyledAccountButton />
         </Toolbar>
       </AppBar>
-      <main >
+      <main>
       </main>
     </div>
   )
