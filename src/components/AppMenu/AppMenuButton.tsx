@@ -2,14 +2,13 @@ import { FC, useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import IconButton from '@material-ui/core/IconButton'
-import Avatar from '@material-ui/core/Avatar'
 import Popper from '@material-ui/core/Popper'
 import Paper from '@material-ui/core/Paper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 import AppsIcon from '@material-ui/icons/Apps'
 
-import useAuth from '../Auth'
+import { useAuth } from '../Auth/'
 import AppMenu from './AppMenu'
 
 interface Props {
