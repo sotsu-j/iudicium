@@ -33,4 +33,5 @@ const useAuth = () => {
     return [currentUser]
 }
 
-export { useAuth, AuthContext, AuthProvider }
+export default useAuth
+export { AuthContext, AuthProvider }
