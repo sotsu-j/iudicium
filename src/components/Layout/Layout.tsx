@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
-import AccountButton from '../Auth__/AccountButton'
-import AppMenuButton from '../AppMenu__/AppMenuButton'
+import AccountButton from '../Auth/AccountButton'
+import AppMenuButton from '../AppMenu/AppMenuButton'
 
 interface Props {
     title?: string;

@@ -8,7 +8,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 import AppsIcon from '@material-ui/icons/Apps'
 
-import useAuth from '../Auth__'
+import useAuth from '../Auth'
 import AppMenu from './AppMenu'
 
 interface Props {
