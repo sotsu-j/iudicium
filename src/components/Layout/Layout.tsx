@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
-import AccountButton from '../Auth/AccountButton'
+import AccountButton from '../Auth__/AccountButton'
 import AppMenuButton from '../AppMenu/AppMenuButton'
 
 interface Props {

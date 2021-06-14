@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import firebase from '../../Firebase'
-import useAuth from '../Auth'
+import useAuth from '../Auth__'
 import SelectChannel from './SelectChannel'
 
 const Chat = () => {
