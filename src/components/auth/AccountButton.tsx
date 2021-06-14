@@ -7,7 +7,7 @@ import Popper from '@material-ui/core/Popper'
 import Paper from '@material-ui/core/Paper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
-import useAuth from './Auth'
+import { useAuth } from './Auth'
 import SignIn from './SignIn'
 import AccountMenu from './AccountMenu'
 
