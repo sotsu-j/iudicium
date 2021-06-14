@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import Chat, { ChatProvider } from '../components/Chat'
+import Chat, { ChatProvider } from '../components/Chat__'
 
 export default function Home() {
 
