@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -10,11 +9,7 @@ import Divider from '@material-ui/core/Divider'
 
 import menuitems from './menuitems'
 
-interface Props {
-	onClick?: () => void;
-}
-
-const AppMenu: FC<Props> = ({ onClick = () => { } }) => {
+const AppMenu = ({ onClick = () => { } }) => {
 	const { pathname } = useRouter()
 
 	return (

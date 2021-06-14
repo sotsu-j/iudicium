@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { FC, useState, useEffect } from 'react'
 
 import Typography from '@material-ui/core/Typography'
+import MenuItem from '@material-ui/core/MenuItem'
 
 import firebase from '../../Firebase'
 
@@ -9,7 +10,11 @@ interface channnel {
     name: string;
 }
 
-const SelectChannel = () => {
+interface Props {
+    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+}
+
+const SelectChannel: FC<Props> = ({ onClick = () => { } }) => {
     const [channels, setChannels] = useState<channnel[]>([])
     const database = firebase.database()
 
@@ -24,7 +29,7 @@ const SelectChannel = () => {
     return (
         <div>
             {channels.map(({ id, name }) => {
-                return <Typography>{name}</Typography>
+                return <MenuItem key={id} id={id} onClick={onClick}>{name}</MenuItem>
             })}
         </div>
     )
