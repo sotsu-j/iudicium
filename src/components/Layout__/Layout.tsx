@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
 import AccountButton from '../Auth__/AccountButton'
-import AppMenuButton from '../AppMenu/AppMenuButton'
+import AppMenuButton from '../AppMenu__/AppMenuButton'
 
 interface Props {
     title?: string;

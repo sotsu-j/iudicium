@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import Typography from '@material-ui/core/Typography'
 
-import Layout from '../components/Layout'
+import Layout from '../components/Layout__'
 
 const Main = styled.div`
     display: flex;
