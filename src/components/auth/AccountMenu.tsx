@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 
 import firebase from '../../Firebase'
-import useAuth from './Auth'
+import { useAuth } from './Auth'
 
 interface Props {
     className?: string;
