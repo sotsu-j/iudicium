@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import Head from 'next/head'
-import styled from 'styled-components'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -8,37 +7,15 @@ import Toolbar from '@material-ui/core/Toolbar'
 import AccountButton from '../Auth/AccountButton'
 import AppMenuButton from '../AppMenu/AppMenuButton'
 
-interface Props {
+import {StyledWrapper, StyledActions, StyledMain} from './style'
+
+interface LayoutProps {
     title?: string;
 }
 
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-`
-
-const Actions = styled.div`
-    ${({ theme }) => `
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    & > :nth-child(n+2) {
-        margin-left: ${theme.spacing(2)}px;
-    }
-    `}
-`
-
-const Main = styled.main`
-    display: flex;
-    width: 100%;
-    height: 100%;
-`
-
-const Layout: FC<Props> = ({ title, children }) => {
-
+const Layout: FC<LayoutProps> = ({ title, children }) => {
     return (
-        <Wrapper>
+        <StyledWrapper>
             <Head>
                 <title>{title && `${title} | `}IUDICIUM</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -46,16 +23,16 @@ const Layout: FC<Props> = ({ title, children }) => {
 
             <AppBar position="sticky" >
                 <Toolbar variant="dense">
-                    <Actions>
+                    <StyledActions>
                         <AppMenuButton />
                         <AccountButton />
-                    </Actions>
+                    </StyledActions>
                 </Toolbar>
             </AppBar>
-            <Main>
+            <StyledMain>
                 {children}
-            </Main>
-        </Wrapper>
+            </StyledMain>
+        </StyledWrapper>
     )
 }
 

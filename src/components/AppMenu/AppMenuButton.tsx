@@ -11,7 +11,9 @@ import { StyledPaper } from './style'
 import useAuth from '../Auth'
 import AppMenu from './AppMenu'
 
-const AppMenuButton = ({ className }) => {
+import { StandardProps } from '..';
+
+const AppMenuButton: FC<StandardProps> = ({ className }) => {
     const [currentUser] = useAuth()
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 

@@ -10,11 +10,9 @@ interface channnel {
     name: string;
 }
 
-interface Props {
-    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-}
+import { StandardProps } from '..'
 
-const SelectChannel: FC<Props> = ({ onClick = () => { } }) => {
+const SelectChannel: FC<StandardProps> = ({ onClick = () => { } }) => {
     const [channels, setChannels] = useState<channnel[]>([])
     const database = firebase.database()
 

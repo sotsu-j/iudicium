@@ -9,11 +9,9 @@ import { StyledAvatar } from './style'
 import firebase from '../../Firebase'
 import { useAuth } from './useAuth'
 
-interface Props {
-    className?: string;
-}
+import { StandardProps } from '..'
 
-const AccountMenu: FC<Props> = ({ className }) => {
+const AccountMenu: FC<StandardProps> = ({ className }) => {
     const [currentUser] = useAuth()
 
     const logout = () => {

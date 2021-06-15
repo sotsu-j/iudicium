@@ -10,11 +10,9 @@ import { useAuth } from './useAuth'
 import SignIn from './SignIn'
 import AccountMenu from './AccountMenu'
 
-interface Props {
-    className?: string;
-}
+import { StandardProps } from '..'
 
-const AccountButton: FC<Props> = ({ className }) => {
+const AccountButton: FC<StandardProps> = ({ className }) => {
     const [currentUser] = useAuth()
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
