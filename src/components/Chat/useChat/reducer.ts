@@ -1,14 +1,16 @@
-const initialState = {
+import { Reducer } from 'react'
+
+const initialState: State = {
     channel: null
 }
 
-const reducer = (state: State, action: CheckInAction | CheckOutAction): State => {
+const reducer: Reducer<State, ActionTypes> = (state, action) => {
     const { type, payload } = action
     switch (type) {
         case 'checkIn':
-            return { channel: payload, ...state };
+            return { ...state, channel: payload };
         case 'checkOut':
-            return state;
+            return { ...state, channel: null };
         default:
             throw new Error();
     }

@@ -1,5 +1,5 @@
 type State = {
-  channel: string | null;
+  channel: string | null | undefined;
 }
 
 interface CheckInAction {
@@ -11,3 +11,5 @@ interface CheckOutAction {
     type: 'checkOut';
     payload?: null;
 }
+
+type ActionTypes = CheckInAction | CheckOutAction
