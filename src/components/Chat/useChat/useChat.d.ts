@@ -1,5 +1,10 @@
+ interface channel {
+    id: string;
+    name: string;
+}
+
 type State = {
-  channel: string | null | undefined;
+  channel: channel | null | undefined;
 }
 
 type ChatContext = [
@@ -9,7 +14,7 @@ type ChatContext = [
 
 interface CheckInAction {
   type: 'checkIn';
-  payload: string;
+  payload: channel;
 }
 
 interface CheckOutAction {

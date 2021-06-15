@@ -1,19 +1,19 @@
 import { useEffect } from 'react'
 
+import { Typography } from '@material-ui/core'
+
 import firebase from '../../Firebase'
 import useAuth from '../Auth'
-import SelectChannel from './SelectChannel'
+import ChannelSelector from './ChannelSelector'
 import useChat from './useChat'
 
+import { StyledSideActions } from './style'
+
 const Chat = () => {
-    const [state, dispatch]  = useChat()
+    const [state]  = useChat()
     const [currentUser] = useAuth()
     const database = firebase.database()
 
-    const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-        const channel = event.currentTarget.id
-        dispatch({ type: 'checkIn', payload: channel })
-    }
 
     useEffect(() => {
         if (currentUser) {
@@ -23,8 +23,12 @@ const Chat = () => {
 
     return (
         <>
-            <SelectChannel onClick={handleClick} />
-            <div>{state.channel}</div>
+            <StyledSideActions>
+                <ChannelSelector />
+            </StyledSideActions>
+            <div>
+                <Typography variant="h4">{state.channel?.name}</Typography>
+            </div>
         </>
     )
 }

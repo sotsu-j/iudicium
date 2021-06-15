@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import AccountButton from '../Auth/AccountButton'
 import AppMenuButton from '../AppMenu/AppMenuButton'
 
-import {StyledWrapper, StyledActions, StyledMain} from './style'
+import { StyledWrapper, StyledActions, StyledMain } from './style'
 
 interface LayoutProps {
     title?: string;
