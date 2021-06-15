@@ -5,30 +5,37 @@ import { Typography } from '@material-ui/core'
 import firebase from '../../Firebase'
 import useAuth from '../Auth'
 import ChannelSelector from './ChannelSelector'
+import InputMessage from './InputMessage'
+import Timeline from './Timeline'
 import useChat from './useChat'
 
-import { StyledSideActions } from './style'
+import { StyledMain, StyledSideActions } from './style'
 
 const Chat = () => {
-    const [state]  = useChat()
+    const [state, dispatch] = useChat()
     const [currentUser] = useAuth()
     const database = firebase.database()
 
-
     useEffect(() => {
         if (currentUser) {
-            database.ref(`users/${currentUser.uid}/name`).set(currentUser.displayName)
+            const { uid, displayName } = currentUser
+            dispatch({ type: 'setActiveUser', payload: { uid, displayName } })
+            database.ref(`users/${currentUser.uid}/name`).set(displayName)
+        } else {
+            dispatch({ type: 'setActiveUser', payload: null })
         }
-    }, [])
+    }, [currentUser])
 
     return (
         <>
             <StyledSideActions>
                 <ChannelSelector />
             </StyledSideActions>
-            <div>
+            <StyledMain>
                 <Typography variant="h4">{state.channel?.name}</Typography>
-            </div>
+                <InputMessage />
+                <Timeline />
+            </StyledMain>
         </>
     )
 }

@@ -25,7 +25,10 @@
         [channel_id] {
             [id]: {
                 message: str
-                user: str
+                user: {
+                    id: str
+                    name: str
+                }
                 timestamp: int
                 reactions: {
                     [user_id]: {

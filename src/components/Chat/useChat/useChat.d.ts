@@ -1,10 +1,23 @@
- interface channel {
-    id: string;
-    name: string;
+interface Channel {
+  id: string;
+  name: string;
+}
+
+interface Message {
+  id: string;
+  message: string;
+  user: User;
+  timestamp: number;
+}
+
+type User = {
+  uid: string;
+  displayName: string;
 }
 
 type State = {
-  channel: channel | null | undefined;
+  user: User | null | undefined;
+  channel: Channel | null | undefined;
 }
 
 type ChatContext = [
@@ -12,9 +25,16 @@ type ChatContext = [
   Dispatch<ActionTypes>
 ]
 
+type payload = Channel & string & User | null
+
+interface SetActiveUser {
+  type: 'setActiveUser';
+  payload: payload;
+}
+
 interface CheckInAction {
   type: 'checkIn';
-  payload: channel;
+  payload: payload;
 }
 
 interface CheckOutAction {
@@ -22,4 +42,9 @@ interface CheckOutAction {
     payload?: null;
 }
 
-type ActionTypes = CheckInAction | CheckOutAction
+interface SendMessageAction {
+    type: 'sendMessage';
+    payload: payload;
+}
+
+type ActionTypes = SetActiveUser | CheckInAction | CheckOutAction | SendMessageAction

@@ -7,7 +7,7 @@ import useChat from './useChat'
 
 const SelectChannel: FC = () => {
     const [, dispatch] = useChat()
-    const [channels, setChannels] = useState<channel[]>([])
+    const [channels, setChannels] = useState<Channel[]>([])
     const database = firebase.database()
 
     const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -18,7 +18,7 @@ const SelectChannel: FC = () => {
 
     useEffect(() => {
         database.ref(`channels`).on('value', (snapshot) => {
-            const data: channel[] = snapshot.val()
+            const data: Channel[] = snapshot.val()
             const __channels = Object.entries(data).map(([key, { name }]) => ({ id: key, name }))
             setChannels(__channels)
         })
