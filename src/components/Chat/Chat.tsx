@@ -6,7 +6,7 @@ import SelectChannel from './SelectChannel'
 import useChat from './useChat'
 
 const Chat = () => {
-    const { state, dispatch } = useChat()
+    const [state, dispatch]  = useChat()
     const [currentUser] = useAuth()
     const database = firebase.database()
 
