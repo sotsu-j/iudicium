@@ -6,7 +6,6 @@ export const StyledMain = styled.div`
     flex-direction: column;
     width: 100%;
     padding: ${theme.spacing(2)}px;
-    background-color: red;
     `}
 `
 
@@ -15,6 +14,8 @@ export const StyledSideActions = styled.div`
     display: flex;
     flex-direction: column;
     width: ${theme.spacing(20)}px;
+    color: ${theme.palette.primary.contrastText};
+    background-color: ${theme.palette.primary.dark};
     `}
 `
 

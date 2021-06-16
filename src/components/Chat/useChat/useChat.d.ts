@@ -11,8 +11,9 @@ interface Message {
 }
 
 type User = {
-  uid: string;
-  displayName: string;
+  id: string;
+  name: string;
+  photoURL: string;
 }
 
 type State = {

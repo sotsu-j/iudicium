@@ -13,6 +13,10 @@ const reducer: Reducer<State, ActionTypes> = (state, action) => {
 
     switch (type) {
         case 'setActiveUser':
+            if (payload) {
+                database.ref(`users/${payload.id}/name`).set(payload.name)
+                database.ref(`users/${payload.id}/photoURL`).set(payload.photoURL)
+            }
             return { ...state, user: payload }
         case 'checkIn':
             return { ...state, channel: payload };
@@ -21,13 +25,13 @@ const reducer: Reducer<State, ActionTypes> = (state, action) => {
         case 'sendMessage':
             const { user, channel} = state
             if (user && channel) {
-                const { uid, displayName } = user
-                console.log(uid, displayName, payload)
+                const { id, name } = user
+                console.log(id, name, payload)
                 database.ref(`messages/${channel.id}`).push().set({
                     message: payload,
                     user: {
-                        id: uid,
-                        name: displayName,
+                        id: id,
+                        name: name,
                     },
                     timestamp: firebase.database.ServerValue.TIMESTAMP,
                 })

@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 
 import { Typography } from '@material-ui/core'
 
-import firebase from '../../Firebase'
 import useAuth from '../Auth'
 import ChannelSelector from './ChannelSelector'
 import InputMessage from './InputMessage'
@@ -14,13 +13,11 @@ import { StyledMain, StyledSideActions } from './style'
 const Chat = () => {
     const [state, dispatch] = useChat()
     const [currentUser] = useAuth()
-    const database = firebase.database()
 
     useEffect(() => {
         if (currentUser) {
-            const { uid, displayName } = currentUser
-            dispatch({ type: 'setActiveUser', payload: { uid, displayName } })
-            database.ref(`users/${currentUser.uid}/name`).set(displayName)
+            const { uid, displayName, photoURL } = currentUser
+            dispatch({ type: 'setActiveUser', payload: { id: uid, name: displayName, photoURL: photoURL } })
         } else {
             dispatch({ type: 'setActiveUser', payload: null })
         }

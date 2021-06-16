@@ -6,7 +6,7 @@ import firebase from '../../Firebase'
 import useChat from './useChat'
 
 const SelectChannel: FC = () => {
-    const [, dispatch] = useChat()
+    const [{ channel }, dispatch] = useChat()
     const [channels, setChannels] = useState<Channel[]>([])
     const database = firebase.database()
 
@@ -26,8 +26,8 @@ const SelectChannel: FC = () => {
 
     return (
         <div>
-            {channels.map(({ id, name }, index) => {
-                return <ListItem key={id} id={id} onClick={handleClick} button>{name}</ListItem>
+            {channels.map(({ id, name }) => {
+                return <ListItem key={id} id={id} onClick={handleClick} selected={id === channel?.id} button>{name}</ListItem>
             })}
         </div>
     )

@@ -4,8 +4,16 @@
     users: {
         [id]: {
             name: str
+            photoURL: str
             connected: {
                 [channel_id]: bool
+            }
+            status: {
+                isActive: bool
+                description: str
+            }
+            contacts: { 
+                [uuser_id]: bool
             }
         }
     }

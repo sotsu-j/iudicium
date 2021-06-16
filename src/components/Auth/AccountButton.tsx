@@ -4,12 +4,12 @@ import IconButton from '@material-ui/core/IconButton'
 import Popper from '@material-ui/core/Popper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
-import { StyledAvatar, StyledPaper } from './style'
+import { StyledPaper } from './style'
 
 import { useAuth } from './useAuth'
 import SignIn from './SignIn'
 import AccountMenu from './AccountMenu'
-
+import AvatarIcon from '../AvatarIcon'
 import { StandardProps } from '..'
 
 const AccountButton: FC<StandardProps> = ({ className }) => {
@@ -28,9 +28,7 @@ const AccountButton: FC<StandardProps> = ({ className }) => {
                 ? <SignIn>ログイン</SignIn>
                 : (
                     <IconButton size="small" onClick={handleClick}>
-                        <StyledAvatar alt={currentUser?.displayName ?? ""} src={currentUser?.photoURL ?? ""}>
-                            {(currentUser?.displayName || "").slice(0, 1)}
-                        </StyledAvatar>
+                        <AvatarIcon displayName={currentUser.displayName} photoURL={currentUser.photoURL} />
                     </IconButton>
                 )
             }

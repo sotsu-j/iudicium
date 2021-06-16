@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
+import { format } from 'date-fns'
 
 import firebase from '../../Firebase'
 import useChat from './useChat'
-
+import MessageItem, { MessageInfo, MessageAvatarIcon } from './MessageItem'
 
 const Timeline = () => {
     const [state, setState] = useState<Message[]>([])
@@ -11,9 +12,9 @@ const Timeline = () => {
 
     useEffect(() => {
         if (channel) {
-            database.ref(`messages/${channel.id}`).on('value', (snapshot) => {
+            database.ref(`messages/${channel.id}`).orderByChild('timeline').limitToLast(10).on('value', (snapshot) => {
                 const data: Message[] = snapshot.val()
-                const __message: Message[] = Object.entries(data).map(([key, value]) => ({ ...value, id: key }))
+                const __message: Message[] = Object.entries(data).map(([key, value]) => ({ ...value, id: key })).reverse()
                 setState(__message)
                 console.log(__message)
             })
@@ -22,9 +23,13 @@ const Timeline = () => {
 
     return (
         <>
-            {state.map(({ message }, index) => {
+            {state.map(({ id, message, user, timestamp }) => {
                 return (
-                    <div key={index}>{message}</div>
+                    <MessageItem key={id} >
+                        <MessageAvatarIcon uid={user.id} />
+                        {message}
+                        <MessageInfo>{user.name} ({format(timestamp, 'MM/dd HH:mm')})</MessageInfo>
+                    </MessageItem>
                 )
             })}
         </>
