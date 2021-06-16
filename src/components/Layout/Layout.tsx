@@ -21,7 +21,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <AppBar position="sticky" >
+            <AppBar position="fixed" >
                 <Toolbar variant="dense">
                     <StyledActions>
                         <AppMenuButton />

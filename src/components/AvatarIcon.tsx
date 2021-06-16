@@ -27,7 +27,6 @@ const AvatarIcon: FC<AvatarIconProps> = ({ size = 4, uid = null, displayName = "
         }
     }, [uid, displayName, photoURL])
 
-    console.log(state)
     return (
         <StyledAvatar alt={state.displayName} src={state.photoURL} size={size}>
             {state.displayName.slice(0, 1)}

@@ -8,7 +8,7 @@ import InputMessage from './InputMessage'
 import Timeline from './Timeline'
 import useChat from './useChat'
 
-import { StyledMain, StyledSideActions } from './style'
+import { StyledMain, StyledSideActions, StyledTimeline } from './style'
 
 const Chat = () => {
     const [state, dispatch] = useChat()
@@ -31,7 +31,9 @@ const Chat = () => {
             <StyledMain>
                 <Typography variant="h4">{state.channel?.name}</Typography>
                 <InputMessage />
-                <Timeline />
+                <StyledTimeline>
+                    <Timeline />
+                </StyledTimeline>
             </StyledMain>
         </>
     )

@@ -5,6 +5,7 @@ export const StyledMain = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     padding: ${theme.spacing(2)}px;
     `}
 `
@@ -23,4 +24,12 @@ export const StyledInputMassage = styled.div`
     display: flex;
     align-content: space-between;
     align-items: center;
+`
+
+export const StyledTimeline = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
 `

@@ -16,7 +16,6 @@ const Timeline = () => {
                 const data: Message[] = snapshot.val()
                 const __message: Message[] = Object.entries(data).map(([key, value]) => ({ ...value, id: key })).reverse()
                 setState(__message)
-                console.log(__message)
             })
         }
     }, [channel])
