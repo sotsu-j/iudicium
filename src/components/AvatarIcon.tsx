@@ -3,33 +3,40 @@ import { FC, useState, useEffect } from 'react'
 import { StyledAvatar } from './style'
 
 import firebase from '../Firebase'
+import { hash } from '../utils/color'
 
 export interface AvatarIconProps {
     size?: number;
     uid?: string;
-    displayName?: string | null;
-    photoURL?: string | null;
+    displayName?: string | undefined;
+    photoURL?: string | undefined;
+    color?: string | undefined;
 }
 
-const AvatarIcon: FC<AvatarIconProps> = ({ size = 4, uid = null, displayName = "", photoURL = undefined }) => {
-    const [state, setState] = useState({
-        displayName: displayName ?? "",
-        photoURL: photoURL ?? undefined,
+const AvatarIcon: FC<AvatarIconProps> = ({ size = 4, uid, displayName, photoURL }) => {
+    const [state, setState] = useState<AvatarIconProps>({
+        displayName,
+        photoURL,
+        color: uid && hash(uid),
     })
     const database = firebase.database()
 
     useEffect(() => {
+        let dispatchSafe = ({ displayName, photoURL, color }:AvatarIconProps) => setState({ displayName, photoURL, color })
         if (uid) {
             database.ref(`users/${uid}`).on('value', (snapshot) => {
                 const data: User = snapshot.val()
-                data && setState({ displayName: data.name, photoURL: data.photoURL})
+                data && dispatchSafe({ displayName: data.name, photoURL: data.photoURL, color: hash(uid) })
             })
+        }
+        return () => {
+            dispatchSafe = () => { }
         }
     }, [uid, displayName, photoURL])
 
     return (
-        <StyledAvatar alt={state.displayName} src={state.photoURL} size={size}>
-            {state.displayName.slice(0, 1)}
+        <StyledAvatar alt={state.displayName} src={state.photoURL} size={size} color={state.color}>
+            {state.displayName && state.displayName.slice(0, 1)}
         </StyledAvatar>
     )
 }

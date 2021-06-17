@@ -24,7 +24,7 @@ const Timeline = () => {
         <>
             {state.map(({ id, message, user, timestamp }) => {
                 return (
-                    <MessageItem key={id} >
+                    <MessageItem key={id}>
                         <MessageAvatarIcon uid={user.id} />
                         {message}
                         <MessageInfo>{user.name} ({format(timestamp, 'MM/dd HH:mm')})</MessageInfo>

@@ -1,5 +1,6 @@
 import Firebase from 'firebase'
 import { FC, createContext, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 import firebase from '../../Firebase'
 
@@ -10,27 +11,29 @@ type AuthContextProps = {
 const AuthContext = createContext<AuthContextProps>({ currentUser: undefined })
 
 const AuthProvider: FC = ({ children }) => {
+  const router = useRouter()
   const [currentUser, setCurrentUser] = useState<Firebase.User | null | undefined>(undefined)
 
   useEffect(() => {
     // ログイン状態が変化するとfirebaseのauthメソッドを呼び出す
     firebase.auth().onAuthStateChanged((user) => {
-      setCurrentUser(user);
+      setCurrentUser(user)
+      if (user == null) router.push('/')
     })
   }, [])
 
   /* 下階層のコンポーネントをラップする */
   return (
-    <AuthContext.Provider value={{ currentUser: currentUser }}>
+    <AuthContext.Provider value={{ currentUser }}>
       {children}
     </AuthContext.Provider>
   )
 }
 
 const useAuth = () => {
-    const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
-    return [currentUser]
+  return [currentUser]
 }
 
 export { useAuth, AuthContext, AuthProvider }

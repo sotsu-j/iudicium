@@ -14,7 +14,7 @@ export const StyledSideActions = styled.div`
     ${({ theme }) => `
     display: flex;
     flex-direction: column;
-    width: ${theme.spacing(20)}px;
+    width: ${theme.spacing(42)}px;
     color: ${theme.palette.primary.contrastText};
     background-color: ${theme.palette.primary.dark};
     `}
@@ -31,5 +31,12 @@ export const StyledTimeline = styled.div`
     flex-direction: column;
     width: 100%;
     height: 100%;
+    overflow: scroll;
+`
+
+export const StyledActiveUserList = styled.div`
+    display: flex;
+    flex-direction: colmun;
+    min-width: 280px;
     overflow: scroll;
 `

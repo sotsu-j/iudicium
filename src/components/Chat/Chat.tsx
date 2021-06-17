@@ -6,6 +6,7 @@ import useAuth from '../Auth'
 import ChannelSelector from './ChannelSelector'
 import InputMessage from './InputMessage'
 import Timeline from './Timeline'
+import ActiveUserList from './ActiveUserList'
 import useChat from './useChat'
 
 import { StyledMain, StyledSideActions, StyledTimeline } from './style'
@@ -17,9 +18,10 @@ const Chat = () => {
     useEffect(() => {
         if (currentUser) {
             const { uid, displayName, photoURL } = currentUser
-            dispatch({ type: 'setActiveUser', payload: { id: uid, name: displayName, photoURL: photoURL } })
-        } else {
-            dispatch({ type: 'setActiveUser', payload: null })
+            dispatch({ type: 'setActive', payload: { id: uid, name: displayName, photoURL: photoURL } })
+        }
+        return () => {
+            dispatch({ type: 'inActive' })
         }
     }, [currentUser])
 
@@ -35,6 +37,7 @@ const Chat = () => {
                     <Timeline />
                 </StyledTimeline>
             </StyledMain>
+            <ActiveUserList />
         </>
     )
 }

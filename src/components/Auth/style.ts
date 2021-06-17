@@ -10,12 +10,12 @@ export const StyledAvatar = styled(Avatar)<{ size?: number }>`
     `}
 `
 
-export const StyledPaper = styled(Paper)`
-    ${({ theme }) => `
+export const StyledPaper = styled(Paper)<{ size?: 'small' | 'large' }>`
+    ${({ theme, size = 'large' }) => `
     display: flex;
     justify-content: center;
-    min-width: ${theme.spacing(36)}px;
-    margin: ${theme.spacing(2)}px;
+    min-width: ${theme.spacing({ small: 16, large: 36 }[size])}px;
+    margin-top: ${theme.spacing(2)}px;
     padding: ${theme.spacing(2)}px;
     border-radius: 1em;
     `}

@@ -5,9 +5,6 @@
         [id]: {
             name: str
             photoURL: str
-            connected: {
-                [channel_id]: bool
-            }
             status: {
                 isActive: bool
                 description: str
@@ -15,13 +12,18 @@
             contacts: { 
                 [uuser_id]: bool
             }
+            connectedChannels: {
+                [channel_id]: {
+                    [tab_id_token]: bool
+                }
+            }
         }
     }
     channels: {
         [id]: {
             name: str
             private: bool
-            last_update: int
+            updatedAt: int
             members: {
                 [id]: {
                     name

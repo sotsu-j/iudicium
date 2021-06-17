@@ -19,6 +19,7 @@ type User = {
 type State = {
   user: User | null | undefined;
   channel: Channel | null | undefined;
+  tabID: string | null;
 }
 
 type ChatContext = [
@@ -28,24 +29,20 @@ type ChatContext = [
 
 type payload = Channel & string & User | null
 
-interface SetActiveUser {
-  type: 'setActiveUser';
-  payload: payload;
-}
-
-interface CheckInAction {
-  type: 'checkIn';
-  payload: payload;
-}
-
-interface CheckOutAction {
+type ActionTypes =
+  {
+    type: 'setActive';
+    payload: payload;
+  } | {
+    type: 'inActive';
+    payload?: null;
+  } | {
+    type: 'checkIn';
+    payload: payload;
+  } | {
     type: 'checkOut';
     payload?: null;
-}
-
-interface SendMessageAction {
+  } | {
     type: 'sendMessage';
     payload: payload;
-}
-
-type ActionTypes = SetActiveUser | CheckInAction | CheckOutAction | SendMessageAction
+  }
