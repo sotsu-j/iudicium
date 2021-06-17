@@ -21,7 +21,6 @@ const ActiveUserList: React.FC = () => {
             .on('value', (snapshot) => {
                 const data: User[] = snapshot.val()
                 const users = data ? Object.entries(data).map(([key, value]) => ({ ...value, id: key })) : null
-                console.log(data)
                 setState(users)
             })
     }, [])

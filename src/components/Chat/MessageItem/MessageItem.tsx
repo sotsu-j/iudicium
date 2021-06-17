@@ -7,12 +7,12 @@ import { StyledMain, StyledAvatar, StyledMessage } from './style'
 const MessageItem: FC = ({ children }) => {
     const childElements = React.Children.toArray(children)
 
-    const elements = childElements.map(element => {
+    const elements = childElements.map((element, index) => {
         switch (React.isValidElement(element) && element.type) {
-            default: return <StyledMessage>{element}</StyledMessage>
+            default: return <StyledMessage key={index}>{element}</StyledMessage>
             case MessageInfo: return element
             case MessageAvatarIcon: return (
-                <StyledAvatar>{element}</StyledAvatar>
+                <StyledAvatar key={index}>{element}</StyledAvatar>
             )
         }
     })

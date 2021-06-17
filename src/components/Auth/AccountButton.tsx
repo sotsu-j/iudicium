@@ -28,7 +28,7 @@ const AccountButton: FC<StandardProps> = ({ className }) => {
                 ? <SignIn>ログイン</SignIn>
                 : (
                     <IconButton size="small" onClick={handleClick}>
-                        <AvatarIcon displayName={currentUser.displayName} photoURL={currentUser.photoURL} />
+                        <AvatarIcon displayName={currentUser.displayName ?? undefined} photoURL={currentUser.photoURL ?? undefined} />
                     </IconButton>
                 )
             }
