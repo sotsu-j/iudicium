@@ -18,7 +18,7 @@ const AccountMenu: FC<StandardProps> = ({ className }) => {
 
     return currentUser ? (
         <div className={className}>
-            <AvatarIcon displayName={currentUser.displayName} photoURL={currentUser.photoURL} size={10} />
+            <AvatarIcon displayName={currentUser.displayName ?? undefined} photoURL={currentUser.photoURL ?? undefined} size={10} />
             <Typography variant="body1" >
                 {currentUser?.displayName}
             </Typography>
