@@ -11,19 +11,31 @@ import AvatarIcon from '../AvatarIcon'
 
 import { StyledActiveUserList } from './style'
 
+type StateType = User[] | null
+
 const ActiveUserList: React.FC = () => {
-    const [state, setState] = useState<User[] | null>(null)
-    const [{ channel, tabID }] = useChat()
+    const [state, setState] = useState<StateType>(null)
+    const [{ channel }] = useChat()
     const database = firebase.database()
 
     useEffect(() => {
-        channel && database.ref(`users`).orderByChild(`connectedChannels/${channel.id}`).startAfter(false)
+        let dispatchSafe = (users: StateType) => setState(users)
+
+        channel && database.ref(`sessions`).orderByChild(`connectedChannelID`).equalTo(channel.id)
             .on('value', (snapshot) => {
-                const data: User[] = snapshot.val()
-                const users = data ? Object.entries(data).map(([key, value]) => ({ ...value, id: key })) : null
-                setState(users)
+                const data: { user: User }[] = snapshot.val()
+                const users = data
+                    ? Object.values(data)
+                        .map((session) => session.user)
+                        .filter(({ id }, index, self) => self.findIndex(v => v.id === id) == index)
+                    : null
+                dispatchSafe(users)
             })
-    }, [])
+        return () => {
+            dispatchSafe = () => { }
+            database.ref(`sessions`).off()
+        }
+    }, [channel])
 
     return (
         <StyledActiveUserList>

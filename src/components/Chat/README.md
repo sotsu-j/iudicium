@@ -12,11 +12,12 @@
             contacts: { 
                 [uuser_id]: bool
             }
-            connectedChannels: {
-                [channel_id]: {
-                    [tab_id_token]: bool
-                }
-            }
+        }
+    }
+    sessions: {
+        [id]: {
+            user: [user{id, name, photoURL}]
+            connectedChannnelID: [channnel_id] | null
         }
     }
     channels: {
@@ -25,9 +26,7 @@
             private: bool
             updatedAt: int
             members: {
-                [id]: {
-                    name
-                }
+                [user_id]: bool
             }
         }
     }

@@ -13,7 +13,7 @@ const Timeline = () => {
     useEffect(() => {
         if (channel) {
             database.ref(`messages/${channel.id}`).orderByChild('timeline').limitToLast(10).on('value', (snapshot) => {
-                const data: Message[] = snapshot.val()
+                const data: Message[] = snapshot.val() ?? []
                 const __message: Message[] = Object.entries(data).map(([key, value]) => ({ ...value, id: key })).reverse()
                 setState(__message)
             })

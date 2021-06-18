@@ -19,7 +19,7 @@ type User = {
 type State = {
   user: User | null | undefined;
   channel: Channel | null | undefined;
-  tabID: string | null;
+  sessionID: string | null;
 }
 
 type ChatContext = [
@@ -27,22 +27,22 @@ type ChatContext = [
   Dispatch<ActionTypes>
 ]
 
-type payload = Channel & string & User | null
+type Payload = Channel & string & User | null | undefined
 
 type ActionTypes =
   {
     type: 'setActive';
-    payload: payload;
+    payload: Payload;
   } | {
     type: 'inActive';
     payload?: null;
   } | {
     type: 'checkIn';
-    payload: payload;
+    payload: Payload;
   } | {
     type: 'checkOut';
     payload?: null;
   } | {
     type: 'sendMessage';
-    payload: payload;
+    payload: Payload;
   }

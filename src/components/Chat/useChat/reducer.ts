@@ -6,51 +6,39 @@ import { getHash } from '../../../utils/hash'
 const initialState: State = {
     user: null,
     channel: null,
-    tabID: null,
+    sessionID: null,
 }
 
 const reducer: Reducer<State, ActionTypes> = (state, action) => {
     const { type, payload } = action
     const database = firebase.database()
 
-    const checkIn = () => {
-        if (payload && state.user) {
-            database.ref(`users/${state.user.id}/connectedChannels/${payload.id}/${state.tabID}`).set(true)
-        }
-        return { ...state, channel: payload };
-    }
-
-    const checkOut = () => {
-        if (state.user && state.channel) { // どこかに入室している場合はチェックアウト
-            database.ref(`users/${state.user.id}/connectedChannels/${state.channel.id}/${state.tabID}`).remove()
-        }
-        return { ...state, channel: null };
-    }
-
     switch (type) {
         default:
             throw new Error();
         case 'setActive':
-            if (payload) {
-                database.ref(`users/${payload.id}/name`).set(payload.name)
-                database.ref(`users/${payload.id}/photoURL`).set(payload.photoURL)
-                database.ref(`users/${payload.id}/status`).set({ isActive: true, description: '接続中' })
+            if(payload){
+                database.ref(`users/${payload.id}`).update({
+                    'name': payload.name,
+                    'photoURL': payload.photoURL,
+                    'status': { isActive: true, description: '接続中' },
+                })
             }
-            const tabID = getHash()
-            return { ...state, user: payload, tabID }
+            const sessionID = payload ? database.ref(`sessions`).push({ user: payload }).key : null
+            return { ...state, user: payload, sessionID }
         case 'inActive':
             if (state.user) {
-                checkOut()
+                checkOut(state)
                 database.ref(`users/${state.user.id}/status`).set({ isActive: false, description: 'オフライン' })
+            }
+            if (state.sessionID) {
+                database.ref(`sessions/${state.sessionID}`).remove()
             }
             return state
         case 'checkIn':
-            if (state.channel && payload) {
-                state.channel.id !== payload.id && checkOut() // どこかに入室している場合はチェックアウト
-            }
-            return checkIn()
+            return checkIn(state, payload)
         case 'checkOut':
-            return checkOut()
+            return checkOut(state)
         case 'sendMessage':
             const { user, channel } = state
             if (user && channel) {
@@ -67,6 +55,22 @@ const reducer: Reducer<State, ActionTypes> = (state, action) => {
             }
             return state
     }
+}
+
+const checkIn = (state: State, payload: Payload) => { // payload にチャンネル情報
+    const database = firebase.database()
+    if (payload && state.user) {
+        database.ref(`sessions/${state.sessionID}/connectedChannelID`).set(payload.id)
+    }
+    return { ...state, channel: payload };
+}
+
+const checkOut = (state: State) => {
+    const database = firebase.database()
+    if (state.user && state.channel) {
+        database.ref(`sessions/${state.sessionID}/connectedChannelID`).remove()
+    }
+    return { ...state, channel: null };
 }
 
 export default reducer
