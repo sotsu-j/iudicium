@@ -29,24 +29,21 @@ const Chat = () => {
         }
     }, [currentUser])
 
-    useEffect(() => {
-    }, [])
-
-        return (
-            <>
-                <StyledSideActions>
-                    <ChannelSelector />
-                </StyledSideActions>
-                <StyledMain>
-                    <Typography variant="h4">{state.channel?.name}</Typography>
-                    <InputMessage />
-                    <StyledTimeline>
-                        <Timeline />
-                    </StyledTimeline>
-                </StyledMain>
-                <ActiveUserList />
-            </>
-        )
-    }
+    return (
+        <>
+            <StyledSideActions>
+                <ChannelSelector />
+            </StyledSideActions>
+            <StyledMain>
+                <Typography variant="h4">{state.channel?.name}</Typography>
+                <InputMessage />
+                <StyledTimeline>
+                    <Timeline />
+                </StyledTimeline>
+            </StyledMain>
+            <ActiveUserList />
+        </>
+    )
+}
 
 export default Chat
